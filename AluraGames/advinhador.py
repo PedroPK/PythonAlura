@@ -1,6 +1,6 @@
-print("################################")
+print("#" * 32)
 print("Bem vindo ao Jogo de Advinhação")
-print("################################")
+print("#" * 32)
 
 secret_number       = 42
 total_guests        = 5
@@ -11,10 +11,11 @@ for round in range(0, total_guests) :
 
     guest_number = int( input("Digite um número entre 1 e 100: ") )
 
-    print("Você digitou ", guest_number)
+    print("Você digitou {:02}".format(guest_number))
 
     if ( guest_number < 1 or guest_number > 100 ) :
         print("Você digitou um valor fora so intervalo")
+        continue
 
     youGotIt    =   guest_number    ==      secret_number
     bigger      =   guest_number    >       secret_number
