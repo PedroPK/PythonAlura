@@ -4,10 +4,26 @@ print("#" * 32)
 print("Bem vindo ao Jogo de Advinhação")
 print("#" * 32)
 
-##secret_number       = 42
+print("\n")
+
+print("Escolha o nível de dificuldade")
+print("(1) Fácil")
+print("(2) Médio")
+print("(3) Dificil")
+
+print("\n")
+
+difficult_level     = int(input("Nível selecionado: "))
+
 secret_number       = random.randint(0, 100)
-total_guests        = 5
 youGotIt            = False
+
+total_guests = 15
+if ( difficult_level == 2 ) :
+    total_guests = 10
+elif ( difficult_level == 3 ) :
+    total_guests = 5
+
 
 for round in range(0, total_guests) :
     print( "Tentativa {} de {}".format(round + 1, total_guests) )
@@ -35,6 +51,6 @@ for round in range(0, total_guests) :
 
     print("\n")
 
-print(type(guest_number))
+print("\n")
 print(f"O Número Secreto era {secret_number}")
 print("Fim do Jogo.")
