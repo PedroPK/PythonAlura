@@ -53,10 +53,8 @@ for round in range(0, total_guests) :
             ##print("Sua Pontuação agora é de {}".format(points))
     
     diff_points = guest_number - secret_number
-    if ( diff_points < 0 ) :
-        diff_points =  diff_points * -1
-
-    points = points - diff_points
+    
+    points = points - abs(diff_points)
 
     print("\n")
 
