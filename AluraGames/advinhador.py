@@ -15,6 +15,7 @@ print("\n")
 
 difficult_level     = int(input("Nível selecionado: "))
 
+points              = 1000
 secret_number       = random.randint(0, 100)
 youGotIt            = False
 
@@ -46,11 +47,20 @@ for round in range(0, total_guests) :
     else:
         if ( bigger ) :
             print("Você errou pra cima.")
+            ##print("Sua Pontuação agora é de {}".format(points))
         elif ( smaller ) :
             print("Você errou para baixo")
+            ##print("Sua Pontuação agora é de {}".format(points))
+    
+    diff_points = guest_number - secret_number
+    if ( diff_points < 0 ) :
+        diff_points =  diff_points * -1
+
+    points = points - diff_points
 
     print("\n")
 
 print("\n")
 print(f"O Número Secreto era {secret_number}")
+print("Sua Pontuação Final foi de {}".format(points) )
 print("Fim do Jogo.")
