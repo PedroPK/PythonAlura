@@ -14,7 +14,7 @@ print("(2) Hangman")
 
 choosen_game    =   int( input("Wich game? ") )
 
-print("\n")
+print("\1n")
 if ( choosen_game == 1 ) :
 
     print("Let's play Guessing!")
