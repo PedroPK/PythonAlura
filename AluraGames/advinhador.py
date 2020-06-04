@@ -19,15 +19,15 @@ points              = 1000
 secret_number       = random.randint(0, 100)
 youGotIt            = False
 
-total_guests = 15
+total_guesses = 15
 if ( difficult_level == 2 ) :
-    total_guests = 10
+    total_guesses = 10
 elif ( difficult_level == 3 ) :
-    total_guests = 5
+    total_guesses = 5
 
 
-for round in range(0, total_guests) :
-    print( "Tentativa {} de {}".format(round + 1, total_guests) )
+for round in range(0, total_guesses) :
+    print( "Tentativa {} de {}".format(round + 1, total_guesses) )
 
     guest_number = int( input("Digite um número entre 1 e 100: ") )
 
