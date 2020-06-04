@@ -5,3 +5,6 @@ def play():
 
     print("\n")
     print("Ending Hangman.")
+
+if ( __name__ == "__main__" ) :
+    play()

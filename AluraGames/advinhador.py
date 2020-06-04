@@ -63,3 +63,6 @@ def play():
     print(f"O Número Secreto era {secret_number}")
     print("Sua Pontuação Final foi de {}".format(points) )
     print("Fim do Jogo.")
+
+if ( __name__ == "__main__" ):
+    play()
