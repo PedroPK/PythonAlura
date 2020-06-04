@@ -11,11 +11,12 @@ def play():
 
     while ( not isHanged and not gotWord ) :
         guess   =   input("Type a character: ")
+        guess   =   guess.strip()               # Java String.trim()
         gotCharacter    = False
 
         index = 0
         for character in secretWord :
-            if ( character == guess) :
+            if ( character.lower() == guess.lower() ) :
                 print("You got one. The character {} exists in position {}".format(character, index))
                 gotCharacter = True
                 break
