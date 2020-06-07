@@ -1,7 +1,16 @@
 def list_to_string_without_commas(pList) :
     string  =   ""
     for element in pList :
-        string = string + element
+        string = string + str(element)
+    
+    return string
+
+def list_to_string_with_commas(pList) :
+    string  =   ""
+    comma   =   ""
+    for element in pList :
+        string = string + comma + str(element)
+        comma = ", "
     
     return string
 
@@ -27,6 +36,18 @@ def test_list_to_string_without_commas() :
     print("The String result is:")
     print(string)
 
+def test_list_to_string_with_commas() :
+    print("\n")
+    print("Lets try to convert this List in a String:")
+    print(" - ['Alfa', 'Beta', 'Gama']")
+    print("\n")
+
+    lista = ['Alfa', 'Beta', 'Gama']
+    string = list_to_string_with_commas(lista)
+
+    print("The String result is:")
+    print(string)
+
 def test_string_to_list() :
     string = "banana"
     lista = string_to_list(string)
@@ -39,4 +60,4 @@ def test_string_to_list() :
     print(lista)
 
 if ( __name__ == "__main__" ) :
-    test_string_to_list()
+    test_list_to_string_with_commas()
