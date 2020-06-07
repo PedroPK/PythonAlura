@@ -30,13 +30,15 @@ def play():
 
                 # This will fill the List of Known Characters
                 gotCharacters[index]    =   character
-                print(gotCharacters)
+                #print(gotCharacters)
+                print_got_characters(gotCharacters)
+
                 if ( "_" not in gotCharacters ) :
                     gotWord     =   True
                     print("You got it!")
                     break
                 
-                print("gotCharacters 1 = " + stringUtils.list_to_string_without_commas(gotCharacters))
+                #print("gotCharacters 1 = " + stringUtils.list_to_string_without_commas(gotCharacters))
 
                 if ( index == 0 ) :
                     secretWord          =   "_"     +   secretWord[index + 1: len(secretWord)]
@@ -45,7 +47,7 @@ def play():
                 else :
                     secretWord          =   secretWord[0: index] + "_" + secretWord[index + 1: len(secretWord)]
 
-                print("secretWord 2 = " + stringUtils.list_to_string_without_commas(secretWord))
+                #print("secretWord 2 = " + stringUtils.list_to_string_without_commas(secretWord))
 
                 # Removing this Break makes it to find All Occurrences of a Character in the Word
                 #break
@@ -59,6 +61,15 @@ def play():
 
     print("\n")
     print("Ending Hangman.")
+
+def print_got_characters(pList) :
+    string = ""
+    for char in pList :
+        string = string + " " + char
+    
+    string = string.strip()
+
+    print(string)
 
 if ( __name__ == "__main__" ) :
     play()
