@@ -46,14 +46,9 @@ def play():
                     secretWord          =   secretWord[0: index] + "_" + secretWord[index + 1: len(secretWord)]
 
                 print("secretWord 2 = " + stringUtils.list_to_string_without_commas(secretWord))
-                """
-                if ( index > 0 ) :
-                    knownWord = knownWord[0:index] + " " + character
-                    if ( index < len(knownWord) ) :
-                        knownWord = knownWord + 
-                """
 
-                break
+                # Removing this Break makes it to find All Occurrences of a Character in the Word
+                #break
             
             print("\n")
 
