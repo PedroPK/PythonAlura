@@ -17,13 +17,15 @@ def play():
     # Ex: In banana word, when user press 'a', it will be like ['_', 'a', '_', 'a', '_', 'a']
     gotCharacters   = ["_"] * len(secretWordList)
 
-    isHanged        = False
+    isHanged              = False
+    qtRemainingChances    = 6
+
     gotWord         = False 
 
     while ( not isHanged and not gotWord ) :
         guessChar   =   input("Type a character: ")
         guessChar   =   guessChar.strip()    # Java String.trim()
-        #gotChar     = False
+        gotChar     = False
 
         # Convert the SecretWord into a List
         # The variable below were replaced by secretWordList
@@ -46,43 +48,52 @@ def play():
             # Let's use the List .index() Function to make the algorithm more performatic, jumping unecessary iterations
             
             if ( guessChar in secretWordList ) :
-                index = secretWordList.index(guessChar)
+                index       = secretWordList.index(guessChar)
+                gotChar     = True
+
+                # If the .index() return -1, we break the Iteration
+                # Else, we can jump to this index, maybe using Continue and Comparison from Index variable with .index() result
+
+                if ( secretWordList[index].lower() == guessChar.lower() ) :
+                    # Add this Positions in a List
+                    listOfPositionsWhereCharWasFound[indexListOfPositionsWhereCharWasFound] = index
+
+                    # Incremet the Index of the List with Positions 
+                    indexListOfPositionsWhereCharWasFound = indexListOfPositionsWhereCharWasFound + 1
+
+                    # This will fill the List of Known Characters
+                    gotCharacters[index]    =   secretWordList[index]
+
+                    if ( "_" not in gotCharacters ) :
+                        gotWord     =   True
+                        print("You got it!")
+                        break
+
+                    secretWordList[index]    =   "_"    #     +   secretWordList[index + 1: len(secretWordList)]
+
+                    # Removing this Break makes it to find All Occurrences of a Character in the Word
+                    #break
+
+                index = index + 1
+
             else :
+                qtRemainingChances = qtRemainingChances - 1
                 print("Keep trying")
-            
-            # If the .index() return -1, we break the Iteration
-            # Else, we can jump to this index, maybe using Continue and Comparison from Index variable with .index() result
-
-            if ( secretWordList[index].lower() == guessChar.lower() ) :
-                # Add this Positions in a List
-                listOfPositionsWhereCharWasFound[indexListOfPositionsWhereCharWasFound] = index
-
-                # Incremet the Index of the List with Positions 
-                indexListOfPositionsWhereCharWasFound = indexListOfPositionsWhereCharWasFound + 1
-
-                # This will fill the List of Known Characters
-                gotCharacters[index]    =   secretWordList[index]
-
-                if ( "_" not in gotCharacters ) :
-                    gotWord     =   True
-                    print("You got it!")
-                    break
-
-                #if ( index == 0 ) :
-                secretWordList[index]    =   "_"    #     +   secretWordList[index + 1: len(secretWordList)]
-
-                # Removing this Break makes it to find All Occurrences of a Character in the Word
-                #break
-
-            index = index + 1
-
+                break
+        
         print_got_characters(gotCharacters)
+
+        if qtRemainingChances <= 0 :
+            isHanged = True
         
         # Convert the List with Positions of Char found into a String
         positionsString = stringUtils.list_to_string_with_commas(listOfPositionsWhereCharWasFound)
 
-        # Print the Message informing player all the positions the Char was found
-        print("You got one. The character {} exists in position(s) {}".format(guessChar, positionsString))
+        if gotChar :
+            # Print the Message informing player all the positions the Char was found
+            print("You got one. The character {} exists in position(s) {}".format(guessChar, positionsString))
+
+        print("You still have {} chances".format(qtRemainingChances))
 
         print("\n")            
 
