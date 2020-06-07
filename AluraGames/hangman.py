@@ -1,3 +1,5 @@
+import stringUtils
+
 def play():
     print("#" * 30)
     print("Welcome to Hangman Game")
@@ -9,7 +11,7 @@ def play():
 
     # This will produce a String like this "_ _ _ _ _ _"
     knownWord       = ("_ " * len(secretWord)).strip()
-    gotCharacters   = [None] * len(secretWord)
+    gotCharacters   = ["_"] * len(secretWord)
     #print(knownWord)
 
     isHanged        = False
@@ -29,6 +31,12 @@ def play():
                 # This will fill the List of Known Characters
                 gotCharacters[index]    =   character
                 print(gotCharacters)
+                if ( "_" not in gotCharacters ) :
+                    gotWord     =   True
+                    print("You got it!")
+                    break
+                
+                print("gotCharacters 1 = " + stringUtils.list_to_string_without_commas(gotCharacters))
 
                 if ( index == 0 ) :
                     secretWord          =   "_"     +   secretWord[index + 1: len(secretWord)]
@@ -37,6 +45,7 @@ def play():
                 else :
                     secretWord          =   secretWord[0: index] + "_" + secretWord[index + 1: len(secretWord)]
 
+                print("secretWord 2 = " + stringUtils.list_to_string_without_commas(secretWord))
                 """
                 if ( index > 0 ) :
                     knownWord = knownWord[0:index] + " " + character
@@ -46,11 +55,11 @@ def play():
 
                 break
             
-            if (  ) :
+            print("\n")
 
             index = index + 1
 
-        if ( not gotCharacter ) :
+        if ( not gotCharacter and not gotWord) :
             print("Keep trying")
 
     print("\n")
