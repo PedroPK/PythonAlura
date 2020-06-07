@@ -60,9 +60,6 @@ def play():
                 # Incremet the Index of the List with Positions 
                 indexListOfPositionsWhereCharWasFound = indexListOfPositionsWhereCharWasFound + 1
 
-                # Commenting line below to print it only once, outside the FOR
-                gotCharacter            = True
-
                 # This will fill the List of Known Characters
                 gotCharacters[index]    =   secretWordList[index]
 
