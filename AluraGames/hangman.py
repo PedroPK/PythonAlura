@@ -22,23 +22,42 @@ def play():
         guess   =   guess.strip()           # Java String.trim()
         gotCharacter    = False
 
+        # Convert the SecretWord into a List
+        listSecretWord = stringUtils.string_to_list(secretWord)
+
+        # Count the number of times that a Char exists in the String/List SecretWord
+        qtOccurrences = listSecretWord.count(guess)
+        #print("Count of Occurrences of the Character in the Secret Word: " + str(listSecretWord.count(character)))
+
+        # Create a List of this Length
+        listOfPositionsWhereCharWasFound        =  [-1] * qtOccurrences
+        indexListOfPositionsWhereCharWasFound   =   0
+
         index = 0
         for character in secretWord :
+
+            # Traverse the SecretWord, finding positions of the Char
+
             if ( character.lower() == guess.lower() ) :
-                print("You got one. The character {} exists in position {}".format(character, index))
+                # Add this Positions in a List
+                listOfPositionsWhereCharWasFound[indexListOfPositionsWhereCharWasFound] = index
+
+                # Incremet the Index of the List with Positions 
+                indexListOfPositionsWhereCharWasFound = indexListOfPositionsWhereCharWasFound + 1
+
+                # Commenting line below to print it only once, outside the FOR
+                #print("You got one. The character {} exists in position {}".format(character, index))
                 gotCharacter            = True
 
                 # This will fill the List of Known Characters
                 gotCharacters[index]    =   character
                 #print(gotCharacters)
-                print_got_characters(gotCharacters)
+                #print_got_characters(gotCharacters)
 
                 if ( "_" not in gotCharacters ) :
                     gotWord     =   True
                     print("You got it!")
                     break
-                
-                #print("gotCharacters 1 = " + stringUtils.list_to_string_without_commas(gotCharacters))
 
                 if ( index == 0 ) :
                     secretWord          =   "_"     +   secretWord[index + 1: len(secretWord)]
@@ -47,14 +66,20 @@ def play():
                 else :
                     secretWord          =   secretWord[0: index] + "_" + secretWord[index + 1: len(secretWord)]
 
-                #print("secretWord 2 = " + stringUtils.list_to_string_without_commas(secretWord))
-
                 # Removing this Break makes it to find All Occurrences of a Character in the Word
                 #break
-            
-            print("\n")
 
             index = index + 1
+
+        print_got_characters(gotCharacters)
+        
+        # Convert the List with Positions of Char found into a String
+        positionsString = stringUtils.list_to_string_with_commas(listOfPositionsWhereCharWasFound)
+
+        # Print the Message informing player all the positions the Char was found
+        print("You got one. The character {} exists in position(s) {}".format(character, positionsString))
+
+        print("\n")
 
         if ( not gotCharacter and not gotWord) :
             print("Keep trying")
