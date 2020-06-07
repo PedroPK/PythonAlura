@@ -5,7 +5,17 @@ def list_to_string_without_commas(pList) :
     
     return string
 
-def test() :
+def string_to_list(pString) :
+    lista = ["_"] * len( pString )
+
+    index = 0
+    for char in pString :
+        lista[index]    =   char
+        index = index + 1
+    
+    return lista
+
+def test_list_to_string_without_commas() :
     print("\n")
     print("Lets try to convert this List in a String:")
     print(" - ['Alfa', 'Beta', 'Gama']")
@@ -17,5 +27,16 @@ def test() :
     print("The String result is:")
     print(string)
 
+def test_string_to_list() :
+    string = "banana"
+    lista = string_to_list(string)
+
+    print("\n")
+    print("Lets try to convert this String in a List:")
+    print(" - 'banana'")
+    print("\n")
+
+    print(lista)
+
 if ( __name__ == "__main__" ) :
-    test()
+    test_string_to_list()
