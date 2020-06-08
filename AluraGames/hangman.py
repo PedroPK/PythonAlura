@@ -108,5 +108,18 @@ def print_got_characters(pList) :
 
     print(string)
 
+def writeWordOnFile() :
+    file = open("words.txt", "w")
+    
+    file.write("apple"      + "\n")
+    file.write("pinapple"   + "\n")
+    file.write("orange"     + "\n")
+    file.write("cramberie"  + "\n")
+    file.write("apple"      + "\n")
+    file.write("blueberry"  + "\n")
+
+    file.close()
+
 if ( __name__ == "__main__" ) :
-    play()
+    #play()
+    writeWordOnFile()
