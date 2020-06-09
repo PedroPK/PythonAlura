@@ -10,10 +10,10 @@ def play():
 
     # This List will store the Char that were discovered. 
     # Ex: In banana word, when user press 'a', it will be like ['_', 'a', '_', 'a', '_', 'a']
-    got_characters   = ["_"] * len(secret_word_list)
+    got_characters = new_underscore_list(secret_word_list)
 
     is_hanged              = False
-    qt_remaining_chances    = 10
+    qt_remaining_chances   = 10
 
     got_word         = False 
 
@@ -22,73 +22,126 @@ def play():
         got_char     = False
 
         # Count the number of times that a Char exists in the String/List SecretWord
-        qt_occurrences = secret_word_list.count(guess_char)
+        qt_occurrences = count_occurrences_of_char_on_list(secret_word_list, guess_char)
 
         # Create a List of this Length
-        list_of_positions_where_char_was_found        =  [-1] * qt_occurrences
-        index_list_of_positions_where_char_was_found   =   0
+        list_of_positions_where_char_was_found          = get_list_same_size_secret_word(qt_occurrences)
+        index_list_of_positions_where_char_was_found    =   0
 
         index = 0
         
+        # Traverse the SecretWord, finding positions of the Char
         while index < len(secret_word_list) :
 
-            # Traverse the SecretWord, finding positions of the Char
-
-            # Let's use the List .index() Function to make the algorithm more performatic, jumping unecessary iterations
-            
             if ( guess_char in secret_word_list ) :
+                # Let's use the List .index() Function to make the algorithm more performatic, jumping unecessary iterations
                 index       = secret_word_list.index(guess_char)
+
                 got_char     = True
 
                 # If the .index() return -1, we break the Iteration
                 # Else, we can jump to this index, maybe using Continue and Comparison from Index variable with .index() result
-
                 if ( secret_word_list[index].lower() == guess_char.lower() ) :
                     # Add this Positions in a List
-                    add_found_positions_into_list(index, list_of_positions_where_char_was_found, index_list_of_positions_where_char_was_found)
+                    add_found_positions_into_list(
+                        index, 
+                        list_of_positions_where_char_was_found, 
+                        index_list_of_positions_where_char_was_found
+                    )
 
                     # Incremet the Index of the List with Positions 
-                    index_list_of_positions_where_char_was_found = index_list_of_positions_where_char_was_found + 1
+                    increment_index(index_list_of_positions_where_char_was_found)
 
                     # This will fill the List of Known Characters
-                    add_found_positions_into_list(secret_word_list[index], got_characters, index)
+                    add_found_positions_into_list(
+                        secret_word_list[index], 
+                        got_characters, 
+                        index)
 
                     if ( "_" not in got_characters ) :
                         got_word     =   True
-                        print("You got it!")
+                        print_you_got_it()
                         break
                     
                     # Replace the found Character per "_"
-                    replace_found_character(secret_word_list, index)    #     +   secretWordList[index + 1: len(secretWordList)]
+                    replace_found_character(
+                        secret_word_list, 
+                        index)
 
                     # Removing this Break makes it to find All Occurrences of a Character in the Word
                     #break
 
-                index = index + 1
+                incremet_index(index)
 
             else :
                 qt_remaining_chances = qt_remaining_chances - 1
-                print("Keep trying")
+                print_keep_trying()
                 break
         
-        print_got_characters(got_characters, got_word)
+        print_got_characters(
+            got_characters, 
+            got_word)
 
+        # If the Player has no more chances
         if qt_remaining_chances <= 0 :
             is_hanged = True
         
         # Convert the List with Positions of Char found into a String
         positionsString = stringUtils.list_to_string_with_commas(list_of_positions_where_char_was_found)
 
-        print_got_character(got_char, guess_char, positionsString, got_word)
+        # Will print the Character that the Player got right
+        print_got_character(
+            got_char, 
+            guess_char, 
+            positionsString, 
+            got_word)
 
-        print_remaining_chances(qt_remaining_chances, got_word)
+        # Will print how many chances the Player still have
+        print_remaining_chances(
+            qt_remaining_chances, 
+            got_word)
 
-        print("\n")            
+        print_new_line()
 
+    print_secret_word(
+        got_word, 
+        secret_word)
+
+    print_ending_hangman()
+
+def count_occurrences_of_char_on_list(secret_word_list, guess_char):
+    qt_occurrences = secret_word_list.count(guess_char)
+    return qt_occurrences
+
+def increment_index(index):
+    index = index + 1
+
+def incremet_index(index_list_of_positions_where_char_was_found):
+    increment_index(index_list_of_positions_where_char_was_found)
+
+def new_underscore_list(secret_word_list):
+    got_characters   = ["_"] * len(secret_word_list)
+    return got_characters
+
+def get_list_same_size_secret_word(qt_occurrences):
+    list_of_positions_where_char_was_found        =  [-1] * qt_occurrences
+    return list_of_positions_where_char_was_found
+
+def print_you_got_it():
+    print("You got it!")
+
+def print_keep_trying():
+    print("Keep trying")
+
+def print_ending_hangman():
+    print("Ending Hangman.")
+
+def print_new_line():
+    print("\n")
+
+def print_secret_word(got_word, secret_word):
     if not got_word :
         print("The Secret Word was '{}'".format(secret_word))
-
-    print("Ending Hangman.")
 
 def replace_found_character(secret_word_list, index):
     add_found_positions_into_list("_", secret_word_list, index)    #     +   secretWordList[index + 1: len(secretWordList)]
@@ -110,7 +163,7 @@ def print_welcome_message():
     print("#" * 30)
     print("Welcome to Hangman Game")
     print("#" * 30)
-    print("\n")
+    print_new_line()
 
 def read_character():
     guessChar   =   input("Type a character: ")
