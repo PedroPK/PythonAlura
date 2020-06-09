@@ -12,6 +12,9 @@ def play():
     # Ex: In banana word, when user press 'a', it will be like ['_', 'a', '_', 'a', '_', 'a']
     got_characters = new_underscore_list(secret_word_list)
 
+    # This list will store all typed characters
+    list_typed_chars = []
+
     is_hanged              = False
     qt_remaining_chances   = 10
 
@@ -20,6 +23,11 @@ def play():
     while ( not is_hanged and not got_word ) :
         guess_char = read_character()
         got_char     = False
+        
+        # Validate if the user typed more than one Character at once
+        if ( len(guess_char) > 1 ) :
+            print("You typed more than one Character at once" + "\n")
+            continue
 
         # Count the number of times that a Char exists in the String/List SecretWord
         qt_occurrences = count_occurrences_of_char_on_list(secret_word_list, guess_char)
