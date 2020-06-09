@@ -1,4 +1,5 @@
 import stringUtils
+import random
 
 def play():
     print("#" * 30)
@@ -10,6 +11,20 @@ def play():
     #secretWord      = "banana"
     secretWordList  =  stringUtils.string_to_list("banana")
 
+    # Read Words from words.txt
+    words = readWordsFromFile()
+    #print(words)
+
+    # Generate a Random Index to select a Word
+    randomInt = random.randint(0, len(words))
+    if (randomInt == len(words)) :
+        randomInt =- 1
+    #print(randomInt)
+
+    # Get the Word randomly selected
+    #print(words[randomInt])
+    secretWordList  =   stringUtils.string_to_list(words[randomInt])
+
     # This will produce a String like this "_ _ _ _ _ _"
     # knownWord       = ("_ " * len(secretWordList)).strip()
 
@@ -18,7 +33,7 @@ def play():
     gotCharacters   = ["_"] * len(secretWordList)
 
     isHanged              = False
-    qtRemainingChances    = 6
+    qtRemainingChances    = 10
 
     gotWord         = False 
 
@@ -120,14 +135,19 @@ def writeWordOnFile() :
 
     file.close()
 
-def readWordOfFile() :
+def readWordsFromFile() :
     file = open("words.txt", "r")
 
+    words = []
     #lines = file.read()
     for line in file :
-        print(line.strip())
+        words.append(line.strip())
+
+    file.close()
+
+    return words
 
 if ( __name__ == "__main__" ) :
-    #play()
+    play()
     #writeWordOnFile()
-    readWordOfFile()
+    #readWordsFromFile()
