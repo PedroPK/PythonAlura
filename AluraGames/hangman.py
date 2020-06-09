@@ -12,8 +12,8 @@ def play():
     # Ex: In banana word, when user press 'a', it will be like ['_', 'a', '_', 'a', '_', 'a']
     got_characters = new_underscore_list(secret_word_list)
 
-    # This list will store all typed characters
-    list_typed_chars = []
+    # This Set will store all typed characters
+    set_typed_chars = {None}
 
     is_hanged              = False
     qt_remaining_chances   = 10
@@ -21,13 +21,22 @@ def play():
     got_word         = False 
 
     while ( not is_hanged and not got_word ) :
-        guess_char = read_character()
-        got_char     = False
+        guess_char      =   read_character()
+        got_char        =   False
         
         # Validate if the user typed more than one Character at once
-        if ( len(guess_char) > 1 ) :
-            print("You typed more than one Character at once" + "\n")
+        if len(guess_char) > 1 :
+            print_more_than_one_character_typed()
             continue
+        else :
+            if ( guess_char not in set_typed_chars ) :
+                set_typed_chars.add(guess_char)
+                print(set_typed_chars)
+                print_new_line()
+            else :
+                print("You already had typed the '{}' character".format(guess_char))
+                print_new_line()
+                continue
 
         # Count the number of times that a Char exists in the String/List SecretWord
         qt_occurrences = count_occurrences_of_char_on_list(secret_word_list, guess_char)
@@ -116,6 +125,9 @@ def play():
         secret_word)
 
     print_ending_hangman()
+
+def print_more_than_one_character_typed():
+    print("You typed more than one Character at once" + "\n")
 
 def count_occurrences_of_char_on_list(secret_word_list, guess_char):
     qt_occurrences = secret_word_list.count(guess_char)
