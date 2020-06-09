@@ -7,22 +7,16 @@ def play():
     print("#" * 30)
     print("\n")
 
-    # This is the Word that the User should try to discover
-    #secretWord      = "banana"
-    secretWordList  =  stringUtils.string_to_list("banana")
+    # Write the File to read it later
+    writeWordOnFile()
 
     # Read Words from words.txt
     words = readWordsFromFile()
-    #print(words)
 
     # Generate a Random Index to select a Word
-    randomInt = random.randint(0, len(words))
-    if (randomInt == len(words)) :
-        randomInt =- 1
-    #print(randomInt)
-
+    randomInt = random.randrange(0, len(words))
+    
     # Get the Word randomly selected
-    #print(words[randomInt])
     secretWordList  =   stringUtils.string_to_list(words[randomInt])
 
     # This will produce a String like this "_ _ _ _ _ _"
@@ -132,6 +126,13 @@ def writeWordOnFile() :
     file.write("cramberie"  + "\n")
     file.write("apple"      + "\n")
     file.write("blueberry"  + "\n")
+    file.write("lemon"      + "\n")
+    file.write("grape"      + "\n")
+    file.write("banana"     + "\n")
+    file.write("melon"      + "\n")
+    file.write("watermelon" + "\n")
+    file.write("mango"      + "\n")
+    file.write("papaya"     + "\n")
 
     file.close()
 
