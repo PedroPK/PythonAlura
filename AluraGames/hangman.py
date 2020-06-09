@@ -120,6 +120,14 @@ def writeWordOnFile() :
 
     file.close()
 
+def readWordOfFile() :
+    file = open("words.txt", "r")
+
+    #lines = file.read()
+    for line in file :
+        print(line.strip())
+
 if ( __name__ == "__main__" ) :
     #play()
-    writeWordOnFile()
+    #writeWordOnFile()
+    readWordOfFile()
