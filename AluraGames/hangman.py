@@ -18,7 +18,7 @@ def play():
     set_typed_chars = {None}
 
     is_hanged              = False
-    qt_remaining_chances   = 10
+    qt_remaining_chances   = 7
 
     got_word         = False 
 
@@ -85,7 +85,8 @@ def play():
 
                         if ( "_" not in got_characters ) :
                             got_word     =   True
-                            print_you_got_it()
+                            #print_you_got_it()
+                            print_you_won_message()
                             break
                         
                         # Replace the found Character per "_"
@@ -100,7 +101,8 @@ def play():
 
         else :
             qt_remaining_chances = qt_remaining_chances - 1
-            print_keep_trying()
+            print_hanging_man(qt_remaining_chances)
+            #print_keep_trying()
             #break
         
         print_got_characters(
@@ -110,6 +112,8 @@ def play():
         # If the Player has no more chances
         if qt_remaining_chances <= 0 :
             is_hanged = True
+            print_you_loose_message(secret_word)
+            break
         
         # Convert the List with Positions of Char found into a String
         positionsString = stringUtils.list_to_string_with_commas(list_of_positions_where_char_was_found)
@@ -128,11 +132,13 @@ def play():
 
         print_new_line()
 
+    '''
     print_secret_word(
         got_word, 
         secret_word)
 
     print_ending_hangman()
+    '''
 
 def print_more_than_one_character_typed():
     print("You typed more than one Character at once" + "\n")
@@ -258,6 +264,89 @@ def readWordsFromFile() :
     file.close()
 
     return words
+
+def print_hanging_man(qt_remaining_chances):
+    print("  _______     ")
+    print(" |/      |    ")
+
+    if ( qt_remaining_chances == 6 ) :
+        print(" |      (_)   ")
+        print(" |            ")
+        print(" |            ")
+        print(" |            ")
+
+    if ( qt_remaining_chances == 5 ) :
+        print(" |      (_)   ")
+        print(" |      \     ")
+        print(" |            ")
+        print(" |            ")
+
+    if ( qt_remaining_chances == 4 ) :
+        print(" |      (_)   ")
+        print(" |      \|    ")
+        print(" |            ")
+        print(" |            ")
+
+    if ( qt_remaining_chances == 3 ) :
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |            ")
+        print(" |            ")
+
+    if ( qt_remaining_chances == 2 ) :
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |            ")
+
+    if ( qt_remaining_chances == 1 ) :
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      /     ")
+
+    if ( qt_remaining_chances == 0 ) :
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      / \   ")
+
+    print(" |            ")
+    print("_|___         ")
+    print()
+
+def print_you_won_message():
+    print("Congratulations, you won!")
+    print("       ___________      ")
+    print("      '._==_==_=_.'     ")
+    print("      .-\\:      /-.    ")
+    print("     | (|:.     |) |    ")
+    print("      '-|:.     |-'     ")
+    print("        \\::.    /      ")
+    print("         '::. .'        ")
+    print("           ) (          ")
+    print("         _.' '._        ")
+    print("        '-------'       ")
+
+def print_you_loose_message(secret_word):
+    print("You got Hanged!")
+    print("The word were '{}'".format(secret_word))
+    print("    _______________         ")
+    print("   /               \       ")
+    print("  /                 \      ")
+    print("//                   \/\  ")
+    print("\|   XXXX     XXXX   | /   ")
+    print(" |   XXXX     XXXX   |/     ")
+    print(" |   XXX       XXX   |      ")
+    print(" |                   |      ")
+    print(" \__      XXX      __/     ")
+    print("   |\     XXX     /|       ")
+    print("   | |           | |        ")
+    print("   | I I I I I I I |        ")
+    print("   |  I I I I I I  |        ")
+    print("   \_             _/       ")
+    print("     \_         _/         ")
+    print("       \_______/           ")
 
 if ( __name__ == "__main__" ) :
     play()
