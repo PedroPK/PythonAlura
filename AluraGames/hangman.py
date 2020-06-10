@@ -188,6 +188,7 @@ def print_remaining_chances(qtRemainingChances, pGotWord) :
         print("You still have {} chances".format(qtRemainingChances))
 
 def print_welcome_message():
+    print("\n" * 10)
     print("#" * 30)
     print("Welcome to Hangman Game")
     print("#" * 30)
@@ -275,14 +276,16 @@ def print_hanging_man(qt_remaining_chances):
     if ( qt_remaining_chances == 6 ) :
         print(" |            ")
 
-    if ( qt_remaining_chances == 5 ) :
-        print(" |      \     ")
-
-    if ( qt_remaining_chances == 4 ) :
-        print(" |      \|    ")
-
+    arms_and_body = ""
+    if ( qt_remaining_chances <= 5 ) :
+        arms_and_body = arms_and_body + "\\"    #   \
+    if ( qt_remaining_chances <= 4 ) :
+        arms_and_body = arms_and_body + "|"     #   \|
     if ( qt_remaining_chances <= 3 ) :
-        print(" |      \|/   ")
+        arms_and_body = arms_and_body + "/"     #   \|/
+        
+    if ( qt_remaining_chances <= 5 ) :
+        print(" |      {}     ".format(arms_and_body))
 
     if ( qt_remaining_chances <=6 and qt_remaining_chances >= 3 ) :
         print(" |            ")
@@ -291,14 +294,13 @@ def print_hanging_man(qt_remaining_chances):
     if ( qt_remaining_chances <= 2 ) :
         print(" |       |    ")
 
-    if ( qt_remaining_chances == 2 ) :
-        print(" |            ")
+    legs = ""
+    if ( qt_remaining_chances <= 1 ) :
+        legs = "/"                              #   /
+    if ( qt_remaining_chances <= 0 ) :
+        legs = legs + " \\"                     #   / \
 
-    if ( qt_remaining_chances == 1 ) :
-        print(" |      /     ")
-
-    if ( qt_remaining_chances == 0 ) :
-        print(" |      / \   ")
+    print(" |      {}   ".format(legs))
 
     print(" |            ")
     print("_|___         ")
