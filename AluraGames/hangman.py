@@ -269,46 +269,35 @@ def print_hanging_man(qt_remaining_chances):
     print("  _______     ")
     print(" |/      |    ")
 
-    if ( qt_remaining_chances == 6 ) :
+    if ( qt_remaining_chances < 7 ) :
         print(" |      (_)   ")
-        print(" |            ")
-        print(" |            ")
+
+    if ( qt_remaining_chances == 6 ) :
         print(" |            ")
 
     if ( qt_remaining_chances == 5 ) :
-        print(" |      (_)   ")
         print(" |      \     ")
-        print(" |            ")
-        print(" |            ")
 
     if ( qt_remaining_chances == 4 ) :
-        print(" |      (_)   ")
         print(" |      \|    ")
+
+    if ( qt_remaining_chances <= 3 ) :
+        print(" |      \|/   ")
+
+    if ( qt_remaining_chances <=6 and qt_remaining_chances >= 3 ) :
         print(" |            ")
         print(" |            ")
 
-    if ( qt_remaining_chances == 3 ) :
-        print(" |      (_)   ")
-        print(" |      \|/   ")
-        print(" |            ")
-        print(" |            ")
+    if ( qt_remaining_chances <= 2 ) :
+        print(" |       |    ")
 
     if ( qt_remaining_chances == 2 ) :
-        print(" |      (_)   ")
-        print(" |      \|/   ")
-        print(" |       |    ")
         print(" |            ")
 
     if ( qt_remaining_chances == 1 ) :
-        print(" |      (_)   ")
-        print(" |      \|/   ")
-        print(" |       |    ")
         print(" |      /     ")
 
     if ( qt_remaining_chances == 0 ) :
-        print(" |      (_)   ")
-        print(" |      \|/   ")
-        print(" |       |    ")
         print(" |      / \   ")
 
     print(" |            ")
