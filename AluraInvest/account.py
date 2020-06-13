@@ -29,7 +29,7 @@ class Account :
     def transfer(self, value, to_account) :
         self.witdraw(value)
         to_account.deposit(value)
-        print("Transfer from Account {} to Account {} with Value of ${:03.2f}".format(self.__number, to_account.__number, value))
+        print(f"Transfer from Account {self.__number} to Account {to_account.__number} with Value of ${value:,.2f}")
 
 #if ( __name__ == "__main__" ) :
 '''
@@ -49,7 +49,7 @@ account_jubs    =   Account(456, "Jubs",  750, 250)
 account_pedro.statement()
 account_jubs.statement()
 
-account_pedro.transfer(50, account_jubs)
+account_pedro.transfer(5000, account_jubs)
 
 account_pedro.statement()
 account_jubs.statement()
