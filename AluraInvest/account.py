@@ -34,6 +34,35 @@ class Account :
             to_account.deposit(value)
             print(f"Transfer from Account {self.__number} to Account {to_account.__number} with Value of ${value:,.2f}")
 
+    @property
+    def limit(self):
+        print("Invoking def limit @property")
+        print(f"The Limit of the Account {self.__number} is ${self.__debt_limit:,.2f}")
+        return self.__debt_limit
+
+    @limit.setter
+    def limit(self, new_limit):
+        print("Invoking limit.setter")
+        if (new_limit >= 0) :
+            self.__debt_limit = new_limit
+            print(f"Limit modified to ${self.__debt_limit}")
+        else: 
+            print("You cannot use a Negative Limit Value")
+
+    @property
+    def number(self):
+        print("Invoking def number @property")
+        print(f"The Account Number is {self.__number}")
+        return self.__number
+
+    @property 
+    def owner_name(self):
+        print("Invoking def owner_name @property")
+        print(f"The Owner of Account {self.__number} is {self.__owner_name}")
+        return self.__owner_name
+
+
+
 #if ( __name__ == "__main__" ) :
 '''
 conta = Account(123, "Pedro", 30.0, 500)
@@ -51,6 +80,9 @@ account_jubs    =   Account(456, "Jubs",  750, 250)
 
 account_pedro.statement()
 account_jubs.statement()
+
+account_pedro.limit
+account_pedro.limit = 750
 
 account_pedro.transfer(50, account_jubs)
 
