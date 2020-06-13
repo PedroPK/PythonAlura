@@ -24,7 +24,14 @@ class Account :
         self.__balance = self.__balance + value
 
     def witdraw(self, value) :
-        self.__balance = self.__balance - value
+        if ( self.__can_witdraw(value) ):
+            self.__balance = self.__balance - value
+            print("Withdraw was done successfully")
+        else : 
+            print(f"You dont have enought Balance and Limit to Witdraw the Value of ${value:,.2f}")
+
+    def __can_witdraw(self, value) :
+        return (abs(self.__balance) + self.__debt_limit) >= value
 
     def transfer(self, value, to_account) :
         if ( self.__balance < abs(value) ) :
@@ -88,3 +95,6 @@ account_pedro.transfer(50, account_jubs)
 
 account_pedro.statement()
 account_jubs.statement()
+
+account_pedro.witdraw(83.0)
+account_pedro.statement()
