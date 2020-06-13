@@ -27,9 +27,12 @@ class Account :
         self.__balance = self.__balance - value
 
     def transfer(self, value, to_account) :
-        self.witdraw(value)
-        to_account.deposit(value)
-        print(f"Transfer from Account {self.__number} to Account {to_account.__number} with Value of ${value:,.2f}")
+        if ( self.__balance < abs(value) ) :
+            print(f"The Account {self.__number} there is no enoght Balance to transfer")
+        else :
+            self.witdraw(value)
+            to_account.deposit(value)
+            print(f"Transfer from Account {self.__number} to Account {to_account.__number} with Value of ${value:,.2f}")
 
 #if ( __name__ == "__main__" ) :
 '''
@@ -49,7 +52,7 @@ account_jubs    =   Account(456, "Jubs",  750, 250)
 account_pedro.statement()
 account_jubs.statement()
 
-account_pedro.transfer(5000, account_jubs)
+account_pedro.transfer(50, account_jubs)
 
 account_pedro.statement()
 account_jubs.statement()
