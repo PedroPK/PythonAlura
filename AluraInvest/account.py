@@ -5,7 +5,8 @@ class Account :
         number,
         owner_name,
         initial_value,
-        debt_limit
+        debt_limit,
+        bank_code = "001"
     ) :
         print( "Accound created ... {}".format(self) )
 
@@ -13,6 +14,7 @@ class Account :
         self.__owner_name   = owner_name
         self.__balance      = initial_value
         self.__debt_limit   = debt_limit
+        self.__bank_code    = bank_code
 
     def statement(self) :
         print("This Account {} has US${}".format(
@@ -68,7 +70,15 @@ class Account :
         print(f"The Owner of Account {self.__number} is {self.__owner_name}")
         return self.__owner_name
 
-
+    @staticmethod
+    def bank_codes() :
+        banks = {
+            "BB"        : "001",
+            "CEF"       : "104",
+            "Bradesco"  : "237"
+        }
+        print(banks)
+        return banks
 
 #if ( __name__ == "__main__" ) :
 '''
@@ -98,3 +108,5 @@ account_jubs.statement()
 
 account_pedro.witdraw(83.0)
 account_pedro.statement()
+
+Account.bank_codes()
