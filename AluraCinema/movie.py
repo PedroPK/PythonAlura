@@ -1,26 +1,17 @@
-class Movie :
+from videoProgram import Video_Program
+
+class Movie (Video_Program):
     
     def __init__(self, name, year, duration) :
-        self.__name     = name
-        self.year       = year
+        super().__init__(name, year)
         self.duration   = duration
-        self.__likes     = 0
-    
-    @property
-    def likes(self) :
-        return self.__likes
 
-    def add_like(self) :
-        self.__likes    =   self.__likes + 1
+avengers = Movie("Avengers: Infinity Wars", 2018, 160)
 
-    @property
-    def name(self) :
-        return self.__name
+avengers.add_like()
+print(f"{avengers.name} - {avengers.duration}: {avengers.likes}")
 
-    @name.setter
-    def name(self, name) :
-        self.__name     =   name
-    
+avengers.add_like()
+print(f"{avengers.name} - {avengers.duration}: {avengers.likes}")
 
-avengers = Movie("Avengers: Infinity Wars", 2018, 160 )
-print(avengers.name)
+#print(avengers.name)
