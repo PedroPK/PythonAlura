@@ -6,9 +6,9 @@ class Movie (Video_Program):
         super().__init__(name, year)
         self.duration   = duration
 
-    def toString(self) :
-        movieString     =   self.name + " - " + str(super().year) + " - Duration: " + str(self.duration)
-        print(movieString)
+    def __str__(self) :
+        movieString     =   f"Type: Movie - Name: {self.name}  - Year: {super().year} Duration: {self.duration}"
+        return movieString
 
 if (  __name__ == "__main__" ) :
     avengers = Movie("Avengers: Infinity Wars", 2018, 160)
@@ -19,5 +19,5 @@ if (  __name__ == "__main__" ) :
     avengers.add_like()
     print(f"{avengers.name} - {avengers.duration}: {avengers.likes}")
 
-    avengers.toString()
+    print(avengers)
     #print(avengers.name)

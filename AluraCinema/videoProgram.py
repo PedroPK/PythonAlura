@@ -1,12 +1,13 @@
-#from serie import Serie
-#from movie import Movie
-
-class Video_Program (object) :
+class Video_Program :
 
     def __init__(self, name, year) :
         self.__name     =   name.title()
         self.__year     =   year
         self.__likes    =   0
+
+
+    def __str__(self) :
+        return f"Type: Video Program - Name: {self.__name} - Year: {self.__year} - Likes: {self.__likes}"
 
     @property
     def year(self) :
@@ -31,6 +32,10 @@ class Video_Program (object) :
     def name(self, name) :
         self.__name     =   name
 
-#hoc         =   Serie("house of Cards", 2013, 6)
-#avengers    =   Movie("Avengers: Infinity Wars", 2018, 160)
+if ( __name__ == "__main__" ) :
+    sessao_da_tarde =   Video_Program("Sessão da Tarde", 1983)
+    print(sessao_da_tarde)
+
+    #hoc         =   Serie("house of Cards", 2013, 6)
+    #avengers    =   Movie("Avengers: Infinity Wars", 2018, 160)
 

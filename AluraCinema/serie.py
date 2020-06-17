@@ -8,9 +8,9 @@ class Serie(Video_Program):
         super().__init__(name, year)
         self.season     =   season
 
-    def toString(self) :
-        serieString     =   self.name + " - " + str(super().year) + " - Seasons: " + str(self.season)
-        print(serieString)
+    def __str__(self) :
+        serieString     =  f"Type: Serie - Name: {self.name}  - Year: {super().year} - Seasons: {self.season}"
+        return serieString
 
 if ( __name__ == "__main__" ) :
     '''
@@ -26,9 +26,10 @@ if ( __name__ == "__main__" ) :
     hoc.toString()
     '''
 
-    hoc         =   Serie("house of Cards", 2013, 6)
-    avengers    =   Movie("Avengers: Infinity Wars", 2018, 160)
+    sessao_da_tarde =   Video_Program("Sessão da Tarde", 1987)
+    hoc             =   Serie("house of Cards", 2013, 6)
+    avengers        =   Movie("Avengers: Infinity Wars", 2018, 160)
 
-    videos = [hoc, avengers]
+    videos = [sessao_da_tarde, hoc, avengers]
     for video in videos :
-        video.toString()
+        print(video)
