@@ -3,15 +3,30 @@ from    videoProgram    import  Video
 from    movie           import  Movie
 from    serie           import  Serie
 
-class Playlist(list) :
+class Playlist() :
 
     def __init__(self, name, video_list) :
         self.__name     = name
-        #self.videos   =   video_list
-        super().__init__(video_list)
+        self.__videos   =   video_list
+    
+    @property
+    def name(self) :
+        return self.__name
+    
+    @property
+    def videos(self) :
+        return self.__videos
+    
+    @name.setter
+    def name(self, name) :
+        self.__name = name
+    
+    @videos.setter
+    def videos(self, videos_list) :
+        self.__videos   =   video_list
     
     def size(self) :
-        return len(self.videos)
+        return len(self.__videos)
     
 if ( __name__ == "__main__" ) :
     avengers        =   Movie("Avengers: Infinity Wars", 2018, 160)
@@ -36,6 +51,8 @@ if ( __name__ == "__main__" ) :
     video_list      =   [avengers, matrix, modern_family, office]
     playlist        =   Playlist("The Best videos", video_list)
 
-    for video in playlist :
+    for video in playlist.videos :
         print(video)
+    
+    print(f"Playlist Size: {playlist.size()}")
 
