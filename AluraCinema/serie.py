@@ -9,7 +9,13 @@ class Serie(Video):
         self.season     =   season
 
     def __str__(self) :
-        serieString     =  f"Type: Serie - Name: {self.name}  - Year: {super().year} - Seasons: {self.season}"
+        serieString     =  (
+            f"Type: Serie - Name: {self.name} - "
+            f"Year: {super().year} - "
+            f"Seasons: {self.season} - "
+            f"Likes: {super().likes}"
+        )
+
         return serieString
 
 if ( __name__ == "__main__" ) :
