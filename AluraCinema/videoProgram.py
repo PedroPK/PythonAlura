@@ -7,7 +7,13 @@ class Video :
 
 
     def __str__(self) :
-        return f"Type: Video Program - Name: {self.__name} - Year: {self.__year} - Likes: {self.__likes}"
+        video_string    =   (
+            f"Type: Video Program - "
+            f"Name: {self.__name} - "
+            f"Year: {self.__year} - "
+            f"Likes: {self.likes}"
+        )
+        return video_string
 
     @property
     def year(self) :
