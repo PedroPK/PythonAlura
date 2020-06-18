@@ -3,11 +3,12 @@ from    videoProgram    import  Video
 from    movie           import  Movie
 from    serie           import  Serie
 
-class Playlist() :
+class Playlist(list) :
 
     def __init__(self, name, video_list) :
         self.__name     = name
-        self.videos   =   video_list
+        #self.videos   =   video_list
+        super().__init__(video_list)
     
     def size(self) :
         return len(self.videos)
@@ -35,6 +36,6 @@ if ( __name__ == "__main__" ) :
     video_list      =   [avengers, matrix, modern_family, office]
     playlist        =   Playlist("The Best videos", video_list)
 
-    for video in playlist.videos :
+    for video in playlist :
         print(video)
 
