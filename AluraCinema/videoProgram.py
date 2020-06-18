@@ -1,4 +1,4 @@
-class Video_Program :
+class Video :
 
     def __init__(self, name, year) :
         self.__name     =   name.title()
@@ -33,7 +33,7 @@ class Video_Program :
         self.__name     =   name
 
 if ( __name__ == "__main__" ) :
-    sessao_da_tarde =   Video_Program("Sessão da Tarde", 1983)
+    sessao_da_tarde =   Video("Sessão da Tarde", 1983)
     print(sessao_da_tarde)
 
     #hoc         =   Serie("house of Cards", 2013, 6)

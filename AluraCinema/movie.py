@@ -1,6 +1,6 @@
-from videoProgram import Video_Program
+from videoProgram import Video
 
-class Movie (Video_Program):
+class Movie (Video):
     
     def __init__(self, name, year, duration) :
         super().__init__(name, year)

@@ -1,8 +1,8 @@
 from movie import Movie
-from videoProgram import Video_Program
+from videoProgram import Video
 
 
-class Serie(Video_Program):
+class Serie(Video):
 
     def __init__(self, name, year, season) :
         super().__init__(name, year)
@@ -26,7 +26,7 @@ if ( __name__ == "__main__" ) :
     hoc.toString()
     '''
 
-    sessao_da_tarde =   Video_Program("Sessão da Tarde", 1987)
+    sessao_da_tarde =   Video("Sessão da Tarde", 1987)
     hoc             =   Serie("house of Cards", 2013, 6)
     avengers        =   Movie("Avengers: Infinity Wars", 2018, 160)
 
